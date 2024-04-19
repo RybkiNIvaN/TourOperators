@@ -1,42 +1,55 @@
 package com.example.touroperators
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.touroperators.databinding.ActivityMainBinding
+import com.example.touroperators.db.Db
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    private val adapter = OperatorAdapter()
+    private lateinit var binding: ActivityMainBinding
+    private val adapter = OperatorAdapter(this)
     lateinit var recyclerView: RecyclerView
+
+    private lateinit var db: Db
+
     private val imageIdList = listOf(
-        R.drawable.op1,
-        R.drawable.op2,
-        R.drawable.op3,
-        R.drawable.op4,
-        R.drawable.op5
+        R.drawable.logo,
     )
-    private var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
+
+        db = Db.getDatabase(this)
+
+        binding.rcView.adapter = adapter
+
+        binding.buttonAdd.setOnClickListener{
+            val intent = Intent(this, AddOperatorActivity::class.java)
+            startActivity(intent)
+        }
+
+        adapter.setList(initAdadpter())
     }
 
-    private fun init() {
-        binding.apply {
-            rcView.layoutManager = LinearLayoutManager(this@MainActivity)
-            rcView.adapter = adapter
-            buttonAdd.setOnClickListener{
-                if (counter > 4) counter = 0
-                val operator = Operator(imageIdList[counter], "Operator $counter")
-                adapter.addOperator(operator)
-                counter++
+    private fun initAdadpter(): ArrayList<Operator> {
+        val operatorList = arrayListOf<Operator>()
+
+        db.operatorDao().getOperators().asLiveData().observe(this) {
+            for (operator in it) {
+                adapter.addOperator(Operator(
+                    operator.id,
+                    imageIdList[0],
+                    operator.name,
+                    "Рейтинг: ${operator.rating}",
+                    "Номер телефона: ${operator.phoneNumber}"))
             }
         }
+
+        return operatorList
     }
 }

@@ -9,16 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.touroperators.databinding.OperatorItemBinding
 
 
-class OperatorAdapter: RecyclerView.Adapter<OperatorAdapter.OperatorHolder>() {
+class OperatorAdapter(context: Context) : RecyclerView.Adapter<OperatorAdapter.OperatorHolder>() {
     private var OperatorList = ArrayList<Operator>()
+
+    private var context: Context = context;
 
     class OperatorHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = OperatorItemBinding.bind(item)
+
         fun bind(operator: Operator) = with(binding) {
-            im.setImageResource(operator.imageId)
-            textTitle.text = operator.title
-
-
+            im.setImageResource(operator.imgId)
+            textTitle.text = operator.name
+            rating.text = operator.rating
+            phone.text = operator.phone
         }
     }
 
@@ -30,10 +33,11 @@ class OperatorAdapter: RecyclerView.Adapter<OperatorAdapter.OperatorHolder>() {
     override fun onBindViewHolder(holder: OperatorHolder, position: Int) {
         holder.bind(OperatorList[position])
 
-
-
-
-
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, OperatorActivity::class.java)
+            intent.putExtra("id", OperatorList[position].id)
+            context.startActivity(intent)
+        }
     }
     override fun getItemCount(): Int {
         return OperatorList.size
@@ -44,5 +48,8 @@ class OperatorAdapter: RecyclerView.Adapter<OperatorAdapter.OperatorHolder>() {
         notifyDataSetChanged()
     }
 
-
+    fun setList(list: ArrayList<Operator>) {
+        OperatorList = list
+        notifyDataSetChanged()
+    }
 }

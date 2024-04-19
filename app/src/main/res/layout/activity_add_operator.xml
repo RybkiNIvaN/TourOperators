@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#C4FBFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddOperatorActivity">
+
+    <TextView
+            android:text="Турфирма"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.052" android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.501"/>
+    <EditText
+            android:layout_width="293dp"
+            android:layout_height="45dp"
+            android:inputType="textPersonName"
+            android:hint="Название компании"
+            android:ems="10"
+            android:id="@+id/name"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.503" app:layout_constraintVertical_bias="0.157"/>
+
+    <EditText
+            android:layout_width="293dp"
+            android:layout_height="45dp"
+            android:inputType="textPersonName"
+            android:hint="Год создания"
+            android:ems="10"
+            android:id="@+id/year_create"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.503" app:layout_constraintVertical_bias="0.275"/>
+    <EditText
+            android:layout_width="293dp"
+            android:layout_height="45dp"
+            android:inputType="phone"
+            android:hint="Контактный телефон турфирмы"
+            android:ems="10"
+            android:id="@+id/phone"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.503" app:layout_constraintVertical_bias="0.388"/>
+
+    <EditText
+            android:layout_width="293dp"
+            android:layout_height="45dp"
+            android:inputType="textPersonName"
+            android:hint="Интересные места поездки"
+            android:ems="10"
+            android:id="@+id/places"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.503" app:layout_constraintVertical_bias="0.52"/>
+    <EditText
+            android:layout_width="293dp"
+            android:layout_height="45dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/rating"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            android:hint="Рейтинг турфирмы" android:textAlignment="center" app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintVertical_bias="0.647"/>
+    <Button
+            android:text="Добавить турфирму"
+            android:layout_width="226dp"
+            android:layout_height="60dp" android:id="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/rating"
+            app:layout_constraintVertical_bias="0.841"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
